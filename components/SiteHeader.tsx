@@ -52,6 +52,14 @@ export default function SiteHeader() {
           </nav>
 
           <div className="header-actions">
+              <a
+                href="https://game-zone.smartbraincreation.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="header-cta"
+              >
+                Gamezone
+              </a>
             <button
               type="button"
               className="header-menu-btn"
@@ -105,7 +113,15 @@ export default function SiteHeader() {
             </li>
           ))}
         </ul>
-        {/* Game Zone removed — keep mobile nav compact */}
+        <a
+          href="https://game-zone.smartbraincreation.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mobile-nav-cta"
+          onClick={() => setMenuOpen(false)}
+        >
+          Gamezone
+        </a>
       </nav>
     </header>
   );
