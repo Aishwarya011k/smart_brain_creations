@@ -76,6 +76,14 @@ main {
   padding-top: 0 !important;
 }
 
+/* Ensure hero content is not hidden under the fixed header. Use a
+   responsive minimum so on smaller screens the hero's top padding is
+   always at least the header height plus a small gap, while preserving
+   larger desktop spacing. */
+.site-header.site-header--home + main .hero-inner {
+  padding-top: max(calc(var(--site-header-height) + 12px), 180px) !important;
+}
+
 /* Hero containers: keep a centered, constrained column across pages so the
    hero content matches the site's primary layout (see screenshots). Use
    per-page `.hero-content` widths to control inner column size. */
@@ -281,7 +289,7 @@ main {
   height: 100vh;
   background: var(--white);
   z-index: 300;
-  padding: 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -325,18 +333,32 @@ main {
 .mobile-nav-list {
   display: grid;
   gap: 6px;
-  flex: 1;
+  /* don't force the list to fill remaining space; keep items stacked
+     and let the CTA appear directly after the items */
+  align-content: start;
+  overflow: auto; /* allow scrolling if nav grows taller than viewport */
 }
 
 .mobile-nav-list a {
   display: block;
-  padding: 10px 12px;
+  padding: 6px 12px;
   font-size: 15px;
   font-weight: 500;
   color: var(--purple);
   border-radius: 8px;
   transition: background 0.16s;
-  line-height: 1.1;
+  line-height: 1.05;
+}
+
+/* Tighten spacing inside mobile nav: remove any default list margins and
+   prevent excessive gaps on small screens */
+.mobile-nav-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav {
+  gap: 6px; /* keep the drawer compact */
 }
 
 .mobile-nav-list a:hover,
@@ -428,7 +450,9 @@ main {
 
   /* Hero: reduce height and padding for mobile screens */
   .hero { min-height: 420px; }
-  .hero-inner { padding: 90px 0 36px; }
+  /* Pull hero content higher so headings sit over the image on mobile */
+  .hero-inner { padding: 60px 0 24px; }
+  .hero-content { margin-top: -18px; }
   .hero-title { font-size: clamp(1.8rem, 6.5vw, 36px); }
   .hero-desc { font-size: clamp(14px, 3.5vw, 16px); }
 
@@ -483,7 +507,9 @@ main {
 @media (max-width: 480px) {
   :root { --inset: 12px; --site-header-height: 80px; }
 
-  .hero-inner { padding: 80px 0 28px; }
+  /* Extra-small screens: bring headings further up into the image */
+  .hero-inner { padding: 48px 0 20px; }
+  .hero-content { margin-top: -20px; }
   .hero-title { font-size: clamp(1.6rem, 7vw, 28px); }
   .hero-desc { font-size: clamp(13px, 4vw, 15px); }
 

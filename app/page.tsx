@@ -136,10 +136,7 @@ export default function Home() {
         <div className="container hero-inner">
           <div className="hero-content">
             <h1 className="hero-title">
-              Composite <span className="hero-yellow hero-uline">Skill Lab</span> For
-              <br />
-              <span className="hero-yellow hero-uline">Creative</span>{" "}
-              <span className="hero-white-uline">&amp; Digital Education</span>
+              Composite <span className="hero-yellow hero-uline">Skill Lab</span> for <span className="hero-nowrap"><span className="hero-yellow hero-uline">Creative</span> <span className="hero-white-uline">&amp; Digital Education</span></span>
             </h1>
             <p className="hero-desc">
               Hands-on programs in Design, Animation, AI &amp; Game Development for
@@ -306,12 +303,7 @@ export default function Home() {
       <section className="cta-section">
         <div className="container cta-content">
           <h2 className="cta-title">Ready to Transform Your School?</h2>
-          <div className="cta-tags">
-            <span>NEP 2020 Aligned</span>
-            <span>AVGC Industry Focus</span>
-            <span>Bangalore-Based</span>
-            <span>Classes 1–12</span>
-          </div>
+          
           <Link href="/contact" className="btn btn-cta">
             Book Your School&apos;s Free DEMO
             <ArrowIcon />

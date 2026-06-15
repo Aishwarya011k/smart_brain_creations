@@ -112,7 +112,16 @@
   .hero { min-height: 420px; }
   /* Increase top padding on mobile so hero wording sits lower under the header */
   .hero-inner { padding: 160px 0 40px; align-items: flex-start; }
-  .hero-title { font-size: clamp(1.6rem, 6vw, 40px); }
+  .hero-title { 
+    font-size: clamp(1.6rem, 6vw, 40px);
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
   .hero-desc { font-size: clamp(14px, 3.5vw, 18px); }
   .btn-primary-hero { min-width: 200px; }
   .hero-btns { justify-content: center; margin-top: 12px; }
@@ -496,14 +505,14 @@
 
 .process-box {
   flex-shrink: 0;
-  width: 85px;
-  height: 85px;
+  width: 64px; /* reduced size */
+  height: 64px; /* reduced size */
   background: var(--purple);
   color: var(--white);
-  border-radius: var(--radius);
+  border-radius: 12px;
   display: grid;
   place-items: center;
-  font-size: 48px;
+  font-size: 32px; /* smaller number font */
   font-weight: 700;
   line-height: 1;
 }
@@ -547,7 +556,7 @@
 }
 
 .build-lead {
-  font-size: 36px;
+  font-size: 44px;
   font-weight: 600;
   line-height: 1.5;
   color: var(--purple);

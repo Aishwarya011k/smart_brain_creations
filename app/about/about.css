@@ -55,9 +55,16 @@
 .about-hero-inner h1 {
   font-size: 56px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.3;
   color: var(--white);
   margin-bottom: 24px;
+  /* force heading to a maximum of 2 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .about-hero-inner > p {
@@ -157,13 +164,13 @@
   z-index: 1;
 }
 
-/* subtle overlay to improve text readability and hover lift */
+/* subtle overlay to improve text readability and hover lift
+   -- removed for this design so wording sits directly on the image */
 .purpose-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* subtle dark overlay to improve text contrast */
-  background: linear-gradient(180deg, rgba(39,0,53,0.55), rgba(39,0,53,0.45));
+  background: none; /* removed grey overlay per request */
   pointer-events: none;
   z-index: 2;
 }
@@ -185,7 +192,7 @@
 
 .purpose-card .purpose-card-content h3,
 .purpose-card .purpose-card-content p {
-  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.28); /* softened shadow for readability */
 }
 
 .purpose-card-bg {
@@ -318,5 +325,32 @@
   .about-nep-btn {
     width: 100%;
     min-width: unset;
+  }
+}
+
+/* Improve purpose card layout on small screens so text isn't cut off */
+@media (max-width: 640px) {
+  .about-purpose {
+    padding-bottom: 60px; /* extra space for decorative ribbon */
+  }
+
+  .about-purpose-grid { gap: 20px; }
+
+  .purpose-card {
+    min-height: 360px; /* ensure enough vertical room for image + text */
+    border-radius: 12px;
+  }
+
+  .purpose-card-content {
+    left: 16px;
+    right: 16px;
+    bottom: 64px; /* nudged up so last line is visible */
+  }
+
+  .purpose-card::after {
+    left: 12px;
+    right: 12px;
+    bottom: -8px; /* reduce overlap of the white ribbon */
+    height: 60px;
   }
 }
