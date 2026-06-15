@@ -66,6 +66,16 @@ main {
   padding-top: var(--site-header-height);
 }
 
+ 
+
+/* When the header overlays a hero (home/about/programs/labs/etc.),
+   allow the hero background to reach the very top by removing the
+   default top padding on the adjacent <main>. The fixed header still
+   visually sits above the hero. */
+.site-header.site-header--home + main {
+  padding-top: 0 !important;
+}
+
 /* Hero containers: keep a centered, constrained column across pages so the
    hero content matches the site's primary layout (see screenshots). Use
    per-page `.hero-content` widths to control inner column size. */
@@ -314,18 +324,19 @@ main {
 
 .mobile-nav-list {
   display: grid;
-  gap: 4px;
+  gap: 6px;
   flex: 1;
 }
 
 .mobile-nav-list a {
   display: block;
-  padding: 14px 12px;
-  font-size: 16px;
+  padding: 10px 12px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--purple);
-  border-radius: var(--radius);
-  transition: background 0.2s;
+  border-radius: 8px;
+  transition: background 0.16s;
+  line-height: 1.1;
 }
 
 .mobile-nav-list a:hover,
@@ -387,6 +398,108 @@ main {
   }
 }
 
+/* ===================== MOBILE RESPONSIVE RULES ===================== */
+@media (max-width: 900px) {
+  :root {
+    --inset: 16px;
+    --site-header-height: 88px;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Compact header for mobile */
+  .header-bar {
+    padding: 10px var(--inset);
+    gap: 8px;
+    align-items: center;
+  }
+
+  .header-nav { display: none; }
+  .header-menu-btn { display: flex; }
+  .site-header .header-strip { height: 0; }
+
+  /* Keep page content below header */
+  main { padding-top: var(--site-header-height); }
+
+  /* Hero: reduce height and padding for mobile screens */
+  .hero { min-height: 420px; }
+  .hero-inner { padding: 90px 0 36px; }
+  .hero-title { font-size: clamp(1.8rem, 6.5vw, 36px); }
+  .hero-desc { font-size: clamp(14px, 3.5vw, 16px); }
+
+  /* Stack grids into single column */
+  .offer-grid,
+  .build-grid,
+  .about-who-grid,
+  .about-purpose-grid,
+  .labs-dual-grid,
+  .labs-dual-grid.reverse,
+  .welcome-grid,
+  .labs-highlight-grid { grid-template-columns: 1fr; gap: 20px; }
+
+  /* Mobile button sizing: keep buttons compact but not full-width */
+  .btn,
+  .btn-primary-hero,
+  .btn-cta,
+  .header-cta {
+    width: auto;
+    max-width: 260px;
+    min-width: 0;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Increase mobile heading sizes by ~5px for readability */
+  h1 { font-size: calc(1.8rem + 5px); }
+  h2 { font-size: calc(1.4rem + 5px); }
+  h3 { font-size: calc(1.2rem + 5px); }
+  h4 { font-size: calc(1rem + 5px); }
+  h5 { font-size: calc(0.9rem + 5px); }
+  h6 { font-size: calc(0.8rem + 5px); }
+
+  /* Slightly smaller buttons on mobile */
+  .btn, .btn-primary-hero, .btn-cta, .header-cta {
+    font-size: 14px;
+    height: 40px;
+    padding: 8px 14px;
+  }
+
+  /* Images and cards should be full-width */
+  .build-card-image,
+  .about-image img,
+  .lab-card-image img,
+  .welcome-image img { height: auto; width: 100%; }
+
+  /* Reduce large paddings across site */
+  .section, .section-title, .offer-section, .about-section { padding: 40px 0; }
+}
+
+@media (max-width: 480px) {
+  :root { --inset: 12px; --site-header-height: 80px; }
+
+  .hero-inner { padding: 80px 0 28px; }
+  .hero-title { font-size: clamp(1.6rem, 7vw, 28px); }
+  .hero-desc { font-size: clamp(13px, 4vw, 15px); }
+
+  /* Reduce margins on headings for small screens */
+  h1, h2, .section-title { margin-bottom: 12px; }
+
+  .about-purpose-title, .welcome-title { font-size: 28px; }
+
+  /* Extra-small screens: slightly larger headings (+~5px) and compact buttons */
+  h1 { font-size: 30px !important; }
+  h2 { font-size: 24px !important; }
+  h3 { font-size: 20px !important; }
+  h4 { font-size: 18px !important; }
+  h5, h6 { font-size: 14px !important; }
+  .btn, .btn-primary-hero, .btn-cta, .header-cta { font-size: 13px !important; height: 36px !important; padding: 6px 12px !important; max-width: 240px !important; }
+}
 /* ── FOOTER (Figma) ── */
 .site-footer {
   position: relative;

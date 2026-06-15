@@ -188,7 +188,7 @@ export default function Home() {
             </div>
 
             <div className="welcome-image">
-              <img src="/homepageimages/rectangle-102.png" alt="Students in creative lab" />
+              <img src="/homepageimages/welcomeimage.png" alt="Welcome image" />
             </div>
           </div>
         </div>

@@ -87,13 +87,13 @@ export default function LabsPage() {
             </div>
 
             <div className="lab-card lab-card-image">
-              <img src="/homepageimages/rectangle-102.png" alt="Creative Lab classroom" />
+              <img src="/labsimages/setup.png" alt="Creative Lab classroom" />
             </div>
           </div>
 
           <div className="labs-dual-grid reverse">
             <div className="lab-card lab-card-image">
-              <img src="/homepageimages/rectangle-105.png" alt="Digital Lab classroom" />
+              <img src="/labsimages/setup2.png" alt="Digital Lab classroom" />
             </div>
             <div className="lab-card lab-card-info">
               <div className="lab-card-inner">
@@ -118,30 +118,9 @@ export default function LabsPage() {
         </div>
       </section>
 
-      <section className="labs-included">
-        <div className="container">
-          <h2 className="labs-included-title">What&apos;s Included</h2>
-          <div className="labs-included-grid">
-            {includedItems.map((item) => (
-              <div key={item} className="labs-included-item">
-                <span className="labs-included-dot" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
-      <section className="labs-cta">
-        <div className="container labs-cta-inner">
-          <h2>Get Your School&apos;s Creative Lab Ready</h2>
-          <p>We handle the complete setup — you focus on educating.</p>
-          <Link href="/contact" className="btn labs-cta-btn">
-            Schedule a Visit
-            <ArrowIcon />
-          </Link>
-        </div>
-      </section>
+      
     </div>
   );
 }
