@@ -11,28 +11,25 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 120px 0 80px;
+  /* Make top padding responsive to the fixed header height so content
+     doesn't get hidden under the header on any viewport */
+  padding: calc(var(--site-header-height) + 12px) 0 80px;
   position: relative;
   overflow: hidden;
   color: #fff;
 }
 
 /* Ensure hero content is not hidden beneath the fixed header */
-@media (min-width: 769px) {
-  .contact-hero-section { padding-top: 180px; }
-}
-
-@media (max-width: 768px) {
-  .contact-hero-section { padding-top: 220px; }
-}
+/* Let the root header height variable drive the hero spacing across
+   breakpoints. Specific overrides can still be applied below if needed. */
 
 .hero-content {
   max-width: 800px;
 }
 
-.hero-title {
+  .hero-title { margin-top: auto;
   font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
