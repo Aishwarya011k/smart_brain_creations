@@ -108,6 +108,11 @@ main {
   padding-left: var(--inset);
 }
 
+/* Reduce weight of hero headings site-wide for a softer visual */
+.hero-title {
+  font-weight: 600 !important;
+}
+
 /* ── HEADER (Figma: strip + glass bar) ── */
 .site-header {
   position: fixed;

@@ -115,11 +115,12 @@
   .hero-title { 
     font-size: clamp(1.6rem, 6vw, 40px);
     line-height: 1.25;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* Allow wrapping on small screens so the full headline is visible */
+    display: block;
+    overflow: visible;
+    text-overflow: unset;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
     white-space: normal;
   }
   .hero-desc { font-size: clamp(14px, 3.5vw, 18px); }
@@ -667,6 +668,9 @@
   box-shadow: 0 6px 20px rgba(255, 179, 15, 0.4);
 }
 
+
+
+
 /* ═══════════════ RESPONSIVE ═══════════════ */
 @media (max-width: 1100px) {
   .hero-title {
@@ -706,7 +710,7 @@
   }
 
   .hero-inner {
-    padding: 120px 0 100px;
+    padding: 120px 16px 100px;  
   }
 
   .hero-wave {
@@ -716,7 +720,7 @@
   .btn-primary-hero,
   .btn-cta {
     min-width: unset;
-    width: 100%;
+    width: auto;
   }
 
   .offer-grid,
@@ -732,11 +736,7 @@
   .section-underline {
     width: 120px;
   }
-
-  .hero-btns {
-    flex-direction: column;
-    align-items: stretch;
-  }
+.hero-btns { justify-content: flex-start; margin-top: 12px; }
 
   .cta-tags {
     flex-direction: column;
@@ -747,3 +747,326 @@
     left: 12px;
   }
 }
+
+/* Small-phone overrides to match provided mobile screenshot (≈360–420px) */
+@media (max-width: 420px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .hero-inner {
+    padding: 120px 16px 28px;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    max-width: none;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-align: left;
+    color: var(--white);
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 14px;
+    max-width: 100%;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(180deg, rgba(39,0,53,0.95) 0%, rgba(39,0,53,0.85) 35%, rgba(39,0,53,0.6) 65%, rgba(39,0,53,0.35) 100%);
+  }
+
+  .hero-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 8px;
+    width : fit-content;
+  }
+
+  .btn-primary-hero {
+    min-width: unset;
+    width: auto;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary-hero svg { transform: translateY(1px); }
+
+  .btn-ghost-hero {
+    width: auto;
+    padding: 10px 16px;
+    border-radius: 10px;
+  }
+
+  /* Welcome section tighter spacing */
+  .welcome-section { padding: 16px 0 20px; }
+  .welcome-title { font-size: 20px; margin-bottom: 8px; }
+  .welcome-copy p { font-size: 13px; line-height: 1.5; }
+
+  /* Keep offer cards in two-column grid on narrow phones like the screenshot */
+  /* Keep two-column compact grid so all four cards appear together on small phones */
+  .offer-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .offer-card { padding: 14px 12px; min-height: unset; border-radius: 12px; }
+  .offer-top { gap: 8px; }
+  .offer-num { font-size: 28px; }
+
+  /* Process cards slightly shorter on small screens */
+  .process-card { min-height: 220px; }
+  .process-card-content { left: 16px; right: 16px; bottom: 18px; }
+  .process-box { width: 48px; height: 48px; font-size: 20px; border-radius: 8px; }
+
+  /* Build section adjustments */
+  .build-lead { font-size: 20px; margin-bottom: 18px; }
+  .build-grid { grid-template-columns: 1fr; }
+
+  /* CTA button full width */
+  .btn-cta { width: 100%; padding: 12px 16px; min-width: unset; border-radius: 10px; }
+}
+
+/* Offer card visual tweaks to match screenshot: large number top-right, icon box, and thick bottom shadow */
+/* ═══════════════════════════════════════════════════════════
+   MOBILE OFFER CARDS — matches Figma screenshot exactly
+   Add this after your existing home.css (or merge into it)
+   Targets ≤640px where the 2-col card layout is needed
+═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+
+  /* ── Grid: 2 columns, tight gap ── */
+  .offer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  /* ── Card base ── */
+  .offer-card {
+    padding: 14px 14px 18px;
+    border-radius: 14px;
+    min-height: unset;
+    gap: 10px;
+    overflow: visible; /* allow bottom shadow to show */
+    position: relative;
+  }
+
+  /* ── Top row: icon left, number right ── */
+  .offer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  /* ── Icon box ── */
+  .offer-icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .offer-icon-box img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  /* ── Large number top-right ── */
+  .offer-num {
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0.95;
+    align-self: flex-start;
+  }
+
+  /* ── Title ── */
+  .offer-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  /* ── Description ── */
+  .offer-card p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.45;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  /* ── Preserve the thick bottom shadow per tone (Figma's drop-shadow look) ── */
+  .offer-card.tone-purple {
+    background: rgba(95, 17, 124, 0.13);
+    box-shadow: 0 10px 0 rgba(161, 115, 178, 0.6);
+  }
+  .offer-card.tone-purple .offer-num,
+  .offer-card.tone-purple h3,
+  .offer-card.tone-purple p { color: var(--purple); }
+  .offer-card.tone-purple .offer-icon-box { background: var(--purple); }
+
+  .offer-card.tone-amber {
+    background: rgba(237, 162, 0, 0.13);
+    box-shadow: 0 10px 0 var(--yellow-badge);
+  }
+  .offer-card.tone-amber .offer-num,
+  .offer-card.tone-amber h3,
+  .offer-card.tone-amber p { color: var(--yellow-badge); }
+  .offer-card.tone-amber .offer-icon-box { background: var(--yellow-badge); }
+
+  .offer-card.tone-blue {
+    background: rgba(0, 89, 254, 0.13);
+    box-shadow: 0 10px 0 rgba(0, 89, 254, 0.85);
+  }
+  .offer-card.tone-blue .offer-num,
+  .offer-card.tone-blue h3,
+  .offer-card.tone-blue p { color: #0059fe; }
+  .offer-card.tone-blue .offer-icon-box { background: #0059fe; }
+
+  .offer-card.tone-green {
+    background: rgba(2, 193, 37, 0.13);
+    box-shadow: 0 10px 0 var(--green-accent);
+  }
+  .offer-card.tone-green .offer-num,
+  .offer-card.tone-green h3,
+  .offer-card.tone-green p { color: var(--green-accent); }
+  .offer-card.tone-green .offer-icon-box { background: var(--green-accent); }
+
+  /* ── Section heading tweaks on mobile ── */
+  .section-eyebrow { font-size: 14px; }
+
+  .section-title {
+    font-size: clamp(1.5rem, 5.5vw, 2rem);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .section-underline {
+    width: 80px;
+    height: 6px;
+    margin-bottom: 24px;
+  }
+
+  /* ── Offer section padding ── */
+  .offer-section {
+    padding: 48px 0 60px;
+  }
+}
+
+/* ── Very small phones (≤380px) — slightly tighter ── */
+@media (max-width: 380px) {
+  .offer-card {
+    padding: 12px 10px 16px;
+  }
+
+  .offer-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .offer-icon-box img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .offer-num {
+    font-size: 36px;
+  }
+
+  .offer-card h3 {
+    font-size: 13px;
+  }
+
+  .offer-card p {
+    font-size: 11px;
+  }
+}
+
+/* Mobile: process-card styling to mirror Figma screenshot */
+@media (max-width: 480px) {
+  .process-mosaic { display: grid; grid-template-columns: 1fr; gap: 18px; }
+
+  .process-card {
+    border-radius: 16px;
+    min-height: 180px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    background: #000;
+  }
+
+  .process-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .process-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.85) 100%);
+  }
+
+  .process-card-content {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 2;
+  }
+
+  .process-box {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--purple);
+    color: var(--white);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    box-shadow: 0 6px 18px rgba(95,17,124,0.18);
+  }
+
+  .process-text h4 {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+  }
+
+  .process-text p {
+    color: rgba(255,255,255,0.95);
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  /* ensure stacked spacing like design */
+  .process-mosaic > .process-card + .process-card { margin-top: 0; }
+}
+
