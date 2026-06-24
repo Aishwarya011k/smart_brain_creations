@@ -110,6 +110,44 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="about-founder">
+        <div className="container about-founder-inner">
+          <h2>Founder’s Note</h2>
+          <div className="about-founder-card">
+            <h3>Building Creators for the Future</h3>
+            <p>
+              When I founded Smart Brain Creations, I saw a gap between what students learn in school and the skills they need for the future.
+            </p>
+            <p>
+              We live in a world shaped by creativity, technology, Artificial Intelligence, design, and digital innovation. Yet many students never get the opportunity to explore these fields in a structured and meaningful way during their school years.
+            </p>
+            <p>
+              Smart Brain Creations was created to bridge that gap.
+            </p>
+            <p>
+              Through our Composite Skill Lab, we help schools bring creative and digital education into everyday learning. Our programs empower students to build real projects, think creatively, solve problems, and gain confidence through hands-on experiences in Animation, Game Design, Digital Art, AI, UI/UX Design, and other future-ready disciplines.
+            </p>
+            <p>
+              Our vision is simple: to transform students from passive learners into active creators.
+            </p>
+            <p>
+              We believe every child has the potential to imagine, create, and innovate when given the right environment and guidance.
+            </p>
+            <p>
+              Together with schools, educators, and parents, we are building a generation that is not only prepared for the future—but ready to shape it.
+            </p>
+            <p>
+              Students don&apos;t just learn—they create.
+            </p>
+            <p className="about-founder-sign">
+              <strong>S. Rathod</strong>
+              <br />
+              Founder, Smart Brain Creations
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="about-purpose">
         <div className="container">
           <h2 className="about-purpose-title">Our Purpose</h2>

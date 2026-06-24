@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Programmes", href: "/programs" },
   { label: "Labs", href: "/labs" },
   { label: "Why It Works", href: "/why-it-works" },
+  { label: "Game Zone", href: "https://game-zone.smartbraincreation.com/" },
   { label: "Contact", href: "/contact" }
 ];
 
@@ -44,6 +45,8 @@ export default function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className={pathname === link.href ? "is-active" : ""}
               >
                 {link.label}
@@ -52,14 +55,9 @@ export default function SiteHeader() {
           </nav>
 
           <div className="header-actions">
-              <a
-                href="https://game-zone.smartbraincreation.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="header-cta"
-              >
-                Gamezone
-              </a>
+            <Link href="/contact" className="header-cta">
+              Book Free Demo
+            </Link>
             <button
               type="button"
               className="header-menu-btn"
@@ -105,6 +103,8 @@ export default function SiteHeader() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className={pathname === link.href ? "is-active" : ""}
                 onClick={() => setMenuOpen(false)}
               >
@@ -113,15 +113,13 @@ export default function SiteHeader() {
             </li>
           ))}
         </ul>
-        <a
-          href="https://game-zone.smartbraincreation.com/"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/contact"
           className="mobile-nav-cta"
           onClick={() => setMenuOpen(false)}
         >
-          Gamezone
-        </a>
+          Book Free Demo
+        </Link>
       </nav>
     </header>
   );
