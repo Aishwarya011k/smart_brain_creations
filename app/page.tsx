@@ -32,13 +32,6 @@ const offers = [
   }
 ];
 
-const aboutItems = [
-  "Creative Lab Setup inside school",
-  "Industry-aligned curriculum",
-  "Hands-on, project-based learning",
-  "Trained expert faculty"
-];
-
 const processSteps = [
   {
     number: "1",
@@ -79,28 +72,80 @@ const buildCards = [
     tone: "build-purple",
     image: "/homepageimages/build-game.png",
     description:
-      "Students design and build interactive games while learning storytelling, logic, creativity, and problem-solving. From concept to gameplay, they experience the complete game creation process."
+      "Students design and build interactive games while learning storytelling, logic, creativity, and problem-solving."
   },
   {
     label: "UI/UX Designs",
     tone: "build-amber",
     image: "/homepageimages/build-uiux.png",
     description:
-      "Students learn how digital products are designed by creating user-facing interfaces, layouts, and interaction prototypes. They develop design thinking and visual communication skills."
+      "Students learn how digital products are designed by creating user-facing interfaces, layouts, and interaction prototypes."
   },
   {
     label: "Animations",
     tone: "build-blue",
     image: "/homepageimages/build-anim.png",
     description:
-      "Students bring ideas to life through motion graphics, character animation, and visual storytelling. They learn creativity, sequencing, and digital production techniques."
+      "Students bring ideas to life through motion graphics, character animation, and visual storytelling."
   },
   {
     label: "Digital Art",
     tone: "build-green",
     image: "/homepageimages/build-art.png",
     description:
-      "Students explore creative expression using professional digital tools to create illustrations, concept art, and visual designs. They build artistic confidence and digital creativity."
+      "Students explore creative expression using professional digital tools to create illustrations and concept art."
+  }
+];
+
+const testimonials = [
+  {
+    quote:
+      "The students loved the sessions and the setup was seamless. It made the whole program feel organised from day one.",
+    author: "Principal, Partner School",
+    role: "Bangalore"
+  },
+  {
+    quote:
+      "What stood out was the balance of creativity and structure. The sessions were engaging and easy for our teachers to support.",
+    author: "Teacher, Partner School",
+    role: "North Bangalore"
+  }
+];
+
+const events = [
+  {
+    title: "Annual Student Showcase",
+    text: "Students presented games, animations, and digital art in front of families and school leaders.",
+    image: "/homepageimages/process-5.png"
+  },
+  {
+    title: "Demo Day for Schools",
+    text: "A live preview of our creative lab setup and student projects for visiting school teams.",
+    image: "/homepageimages/process-4.png"
+  },
+  {
+    title: "Creative Lab Open Week",
+    text: "Hands-on project sessions and portfolio review days that gave students a public stage to shine.",
+    image: "/homepageimages/process-3.png"
+  }
+];
+
+const faqItems = [
+  {
+    q: "Do schools need a big upfront investment?",
+    a: "No. We provide the setup support and delivery model so your school can start with a manageable and structured plan."
+  },
+  {
+    q: "Who runs the sessions?",
+    a: "Our trained faculty handles the weekly sessions while your school team stays focused on day-to-day operations."
+  },
+  {
+    q: "Is it aligned with NEP 2020 and class levels?",
+    a: "Yes. Our programs are designed for Classes 1–12 and follow a skill-based, hands-on learning approach."
+  },
+  {
+    q: "Can we see a demo before onboarding?",
+    a: "Yes. We offer a free demo for schools so you can review the program, curriculum, and student outcomes in person."
   }
 ];
 
@@ -136,7 +181,14 @@ export default function Home() {
         <div className="container hero-inner">
           <div className="hero-content">
             <h1 className="hero-title">
-              Composite <span className="hero-yellow hero-uline">Skill Lab</span> for <span className="hero-nowrap"><span className="hero-yellow hero-uline">Creative</span> <span className="hero-white-uline">&amp; Digital Education</span></span>
+              <span className="hero-title-desktop">
+                Creative &amp; Digital Lab for Schools
+                <br />
+                Design, Animation, AI, and Game Dev.
+              </span>
+              <span className="hero-title-mobile">
+                Creative &amp; Digital Lab for Schools
+              </span>
             </h1>
             <p className="hero-desc">
               Hands-on programs in Design, Animation, AI &amp; Game Development for
@@ -156,101 +208,53 @@ export default function Home() {
         <div className="hero-bottom-line" aria-hidden="true" />
       </section>
 
-      <section className="offer-section">
       <section className="welcome-section">
         <div className="container welcome-inner">
           <h2 className="welcome-title">Welcome to Smart Brain Creations</h2>
-
           <div className="welcome-grid">
             <div className="welcome-copy">
               <p>
-                Smart Brain Creations is a future-focused education company helping
-                schools transform traditional learning into creative, hands-on
-                experiences through our Composite Skill Lab.
+                Smart Brain Creations helps schools bring creative, hands-on learning into everyday education through our Composite Skill Lab.
               </p>
-
               <p>
-                Aligned with NEP 2020 and India&apos;s growing AI &amp; AVGC
-                (Animation, Visual Effects, Gaming &amp; Comics) ecosystem, we
-                empower students from Classes 1–12 with industry-relevant
-                skills in Design, Animation, Game Development, Artificial
-                Intelligence, Digital Media, and Creative Technology.
+                We support students from Classes 1–12 with practical learning in Design, Animation, AI, and Game Development — all aligned with NEP 2020 and the growing AVGC sector.
               </p>
-
               <p>
                 <strong>Our mission is simple:</strong>
                 <br />
                 <strong className="welcome-mission">Students don&apos;t just learn — they create.</strong>
               </p>
             </div>
-
             <div className="welcome-image">
               <img src="/homepageimages/welcomeimage.png" alt="Welcome image" />
             </div>
           </div>
         </div>
       </section>
+
+      <section className="offer-section">
         <div className="container">
           <p className="section-eyebrow">WHAT WE OFFER</p>
           <h2 className="section-title">Everything Your School Needs</h2>
           <div className="section-underline" />
-          <div className="offer-grid">
+          <div className="offer-list">
             {offers.map((offer) => (
-              <article className={`offer-card ${offer.tone}`} key={offer.number}>
-                <div className="offer-top">
-                  <span className="offer-icon-box">
-                    <img src={offer.icon} alt="" width={40} height={40} />
-                  </span>
-                  <span className="offer-num">{offer.number}</span>
+              <article className="offer-item" key={offer.number}>
+                <span className="offer-item-number">{offer.number}</span>
+                <div>
+                  <h3>{offer.title}</h3>
+                  <p>{offer.text}</p>
                 </div>
-                <h3>{offer.title}</h3>
-                <p>{offer.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="about-section">
-        <div className="container about-grid">
-          <div className="about-copy">
-            <h2>Our Creative Education System Inspires Students</h2>
-            <p>
-              Hands-on programs in Design, Animation, AI &amp; Game Development for
-              Classes 1–12 — aligned with NEP 2020 and India&apos;s AVGC sector.
-            </p>
-            <div className="about-checks">
-              {aboutItems.map((item) => (
-                <div className="about-check" key={item}>
-                  <CheckIcon />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <Link href="/about" className="about-link">
-              Learn more about us
-              <ArrowIcon stroke="#5F117C" />
-            </Link>
-          </div>
-          <div className="about-image">
-            <img
-              src="/homepageimages/rectangle-102.png"
-              alt="Students working with creative technology"
-              width={628}
-              height={470}
-            />
-            <div className="about-badge">
-              <strong>2+</strong>
-              <span>Years of Quality Education</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="process-section">
         <div className="container">
-          <p className="section-eyebrow section-eyebrow-left">PROCESS</p>
-          <h2 className="section-title section-title-left">How It Works</h2>
+          <p className="section-eyebrow section-eyebrow-left">HOW IT WORKS</p>
+          <h2 className="section-title section-title-left">A simple partnership model for schools</h2>
           <div className="section-underline section-underline-left" />
           <div className="process-mosaic">
             {processSteps.map((step) => (
@@ -273,28 +277,103 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="build-section">
-        <div className="build-band">
-          <div className="container">
-            <h2>
-              Students Don&apos;t Just Learn —{" "}
-              <span className="hero-yellow">They Build</span>
-            </h2>
+      <section className="gallery-section">
+        <div className="container">
+          <p className="section-eyebrow">STUDENT WORK GALLERY</p>
+          <h2 className="section-title">Real projects from our creative learning programs</h2>
+          <div className="section-underline" />
+          <div className="gallery-grid">
+            {buildCards.map((card) => (
+              <article className="gallery-card" key={card.label}>
+                <img src={card.image} alt={card.label} />
+                <div className="gallery-card-copy">
+                  <h3>{card.label}</h3>
+                  <p>{card.description}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
-        <div className="container build-body">
-          <p className="build-lead">
-            Real skills. Real portfolio. Real confidence. Game Projects
-          </p>
-          <div className="build-grid">
-            {buildCards.map((card) => (
-              <article className={`build-card ${card.tone}`} key={card.label}>
-                <div className="build-card-image">
-                  <img src={card.image} alt={card.label} />
-                </div>
-                <p className="build-card-label">{card.label}</p>
-                <p className="build-card-desc">{card.description}</p>
+      </section>
+
+      <section className="team-section">
+        <div className="container team-grid">
+          <div className="team-copy">
+            <p className="section-eyebrow section-eyebrow-left">FOUNDERS &amp; TEAM</p>
+            <h2 className="section-title section-title-left">A trusted team behind every school program</h2>
+            <div className="section-underline section-underline-left" />
+            <p>
+              Smart Brain Creations is built around a passionate team of educators, creatives, and program specialists who help schools deliver future-ready learning experiences.
+            </p>
+            <p>
+              From lab setup to curriculum support and classroom delivery, our team works closely with school leaders to make every step simple and structured.
+            </p>
+          </div>
+          <div className="team-cards">
+            <article className="team-card">
+              <h3>Founder</h3>
+              <p className="team-card-name">S. Rathod</p>
+              <p>
+                Founder and vision leader of Smart Brain Creations, guiding the mission of making creative and digital education accessible in schools.
+              </p>
+            </article>
+            <article className="team-card">
+              <h3>Our Team</h3>
+              <p>
+                A dedicated group of educators, facilitators, and creative mentors supporting curriculum planning, faculty coordination, and student engagement.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="testimonial-section">
+        <div className="container">
+          <p className="section-eyebrow">TESTIMONIALS</p>
+          <h2 className="section-title">What schools say about the experience</h2>
+          <div className="section-underline" />
+          <div className="testimonial-grid">
+            {testimonials.map((item) => (
+              <article className="testimonial-card" key={item.author}>
+                <p className="testimonial-quote">“{item.quote}”</p>
+                <div className="testimonial-author">{item.author}</div>
+                <div className="testimonial-role">{item.role}</div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="events-section">
+        <div className="container">
+          <p className="section-eyebrow">NEWS &amp; EVENTS</p>
+          <h2 className="section-title">Recent showcases and school engagement moments</h2>
+          <div className="section-underline" />
+          <div className="events-grid">
+            {events.map((event) => (
+              <article className="event-card" key={event.title}>
+                <img src={event.image} alt={event.title} />
+                <div className="event-copy">
+                  <h3>{event.title}</h3>
+                  <p>{event.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="faq-section">
+        <div className="container">
+          <p className="section-eyebrow">FAQ</p>
+          <h2 className="section-title">Common questions from school leaders</h2>
+          <div className="section-underline" />
+          <div className="faq-list">
+            {faqItems.map((item) => (
+              <details className="faq-item" key={item.q} open>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
             ))}
           </div>
         </div>
@@ -303,7 +382,6 @@ export default function Home() {
       <section className="cta-section">
         <div className="container cta-content">
           <h2 className="cta-title">Ready to Transform Your School?</h2>
-          
           <Link href="/contact" className="btn btn-cta">
             Book Your School&apos;s Free DEMO
             <ArrowIcon />

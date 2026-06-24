@@ -1,38 +1,34 @@
-/* Contact Page Styles - Matching Figma Design exactly */
+/* Contact Page Styles */
 
 .contact-page {
   min-height: 100vh;
   background: #ffffff;
 }
 
-/* Hero Section */
+/* ── Hero Section ─────────────────────────────────────────────────────────── */
 .contact-hero-section {
-  background-image:  url('/assets/contact.png');
+  background-image: url('/assets/contact.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* Make top padding responsive to the fixed header height so content
-     doesn't get hidden under the header on any viewport */
-  padding: calc(var(--site-header-height) + 12px) 0 80px;
+  padding: calc(var(--site-header-height, 80px) + 12px) 0 80px;
   position: relative;
   overflow: hidden;
   color: #fff;
 }
 
-/* Ensure hero content is not hidden beneath the fixed header */
-/* Let the root header height variable drive the hero spacing across
-   breakpoints. Specific overrides can still be applied below if needed. */
-
 .hero-content {
   max-width: 800px;
+  padding: 0 24px; /* FIX: was missing — text was flush against the edge */
 }
 
-  .hero-title { margin-top: auto;
+.hero-title {
   font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
+  margin-top: 0;      /* FIX: removed stray margin-top: auto */
   margin-bottom: 24px;
 }
 
@@ -45,7 +41,7 @@
   max-width: 600px;
 }
 
-/* Main Content Section */
+/* ── Main Content Section ─────────────────────────────────────────────────── */
 .contact-main {
   padding: 80px 0;
   background: #ffffff;
@@ -56,9 +52,10 @@
   grid-template-columns: 1fr 1.5fr;
   gap: 60px;
   align-items: start;
+  padding: 0 24px; /* FIX: ensure content has side padding */
 }
 
-/* Left Side - Contact Info */
+/* ── Left Side — Contact Info ─────────────────────────────────────────────── */
 .contact-info-side {
   padding-right: 20px;
 }
@@ -99,6 +96,9 @@
   border: 1px solid rgba(95, 17, 124, 0.15);
   border-radius: 15px;
   transition: all 0.3s ease;
+  box-sizing: border-box; /* FIX: ensures padding doesn't cause overflow */
+  width: 100%;            /* FIX: constrains card to its parent column */
+  overflow: hidden;       /* FIX: clips any child content that might bleed */
 }
 
 .contact-card:hover {
@@ -112,6 +112,7 @@
   justify-content: center;
   width: 48px;
   height: 48px;
+  min-width: 48px; /* FIX: prevent icon from shrinking on narrow screens */
   background: var(--purple);
   color: #ffffff;
   border-radius: 12px;
@@ -125,6 +126,7 @@
 
 .card-content {
   flex: 1;
+  min-width: 0; /* FIX: allows text to wrap instead of overflowing */
 }
 
 .card-label {
@@ -143,9 +145,10 @@
   color: var(--text-body);
   line-height: 1.5;
   margin: 0;
+  word-break: break-word; /* FIX: long emails/addresses wrap cleanly */
 }
 
-/* Right Side - Form */
+/* ── Right Side — Form ────────────────────────────────────────────────────── */
 .contact-form-side {
   background: #ffffff;
 }
@@ -177,6 +180,7 @@
 
 .form-input,
 .form-textarea {
+  box-sizing: border-box; /* FIX: width:100% + padding no longer overflows */
   width: 100%;
   padding: 14px 18px;
   font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
@@ -207,6 +211,7 @@
 }
 
 .submit-button {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -234,7 +239,7 @@
   transform: translateY(0);
 }
 
-/* Responsive Design */
+/* ── Tablet (≤1024px) ─────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .contact-layout {
     grid-template-columns: 1fr;
@@ -251,14 +256,16 @@
   }
 
   .contact-card {
-    flex: 1;
-    min-width: 250px;
+    flex: 1 1 calc(50% - 10px); /* FIX: was min-width:250px — caused overflow */
+    min-width: 0;
   }
 }
 
+/* ── Mobile (≤768px) ──────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* FIX: use the CSS variable instead of the hardcoded 100px */
   .contact-hero-section {
-    padding: 100px 0 60px;
+    padding: calc(var(--site-header-height, 80px) + 12px) 0 60px;
   }
 
   .hero-title {
@@ -269,8 +276,18 @@
     font-size: 16px;
   }
 
+  /* FIX: reduced from 80px — the large gap visible in the screenshot */
   .contact-main {
-    padding: 60px 0;
+    padding: 48px 0;
+  }
+
+  .contact-layout {
+    padding: 0 16px; /* FIX: tighter side padding on phones */
+    gap: 32px;
+  }
+
+  .hero-content {
+    padding: 0 16px; /* FIX: tighter on phones */
   }
 
   .contact-heading {
@@ -278,18 +295,21 @@
   }
 
   .form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* FIX: stack name/email on mobile */
   }
 
+  /* FIX: cards always stack vertically on phones */
   .contact-cards {
     flex-direction: column;
   }
 
   .contact-card {
-    min-width: auto;
+    flex: 1 1 100%;
+    min-width: 0;
   }
 }
 
+/* ── Small phones (≤480px) ────────────────────────────────────────────────── */
 @media (max-width: 480px) {
   .hero-title {
     font-size: 1.75rem;
@@ -297,6 +317,10 @@
 
   .contact-heading {
     font-size: 24px;
+  }
+
+  .contact-subheading {
+    font-size: 15px;
   }
 
   .form-input,
@@ -308,5 +332,13 @@
   .submit-button {
     padding: 14px 24px;
     font-size: 15px;
+  }
+
+  .card-label {
+    font-size: 13px;
+  }
+
+  .card-value {
+    font-size: 14px;
   }
 }

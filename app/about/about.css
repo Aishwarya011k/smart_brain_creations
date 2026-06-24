@@ -131,6 +131,65 @@
   object-fit: cover;
 }
 
+/* ═══════════════ FOUNDER'S NOTE ═══════════════ */
+.about-founder {
+  padding: 0 0 80px;
+  background: var(--white);
+}
+
+.about-founder-inner {
+  max-width: 960px;
+}
+
+.about-founder h2 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--purple);
+  margin-bottom: 24px;
+}
+
+.about-founder-card {
+  background: linear-gradient(135deg, #fcf8ff 0%, #ffffff 100%);
+  border: 1px solid rgba(95, 17, 124, 0.12);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 10px 30px rgba(95, 17, 124, 0.08);
+}
+
+.about-founder-card h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 20px;
+}
+
+.about-founder-card p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #5d5b5b;
+  margin-bottom: 16px;
+}
+
+.about-founder-sign {
+  margin-top: 28px;
+  padding-top: 18px;
+  font-weight: 700;
+  color: var(--purple);
+  font-size: 18px;
+  line-height: 1.7;
+  border-top: 1px solid rgba(95, 17, 124, 0.16);
+}
+
+.about-founder-sign strong {
+  display: inline-block;
+  font-size: 22px;
+  color: var(--purple);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
 /* ═══════════════ OUR PURPOSE ═══════════════ */
 .about-purpose {
   padding: 80px 0 100px;
@@ -175,18 +234,18 @@
   z-index: 2;
 }
 
-/* Decorative skewed ribbon / plate under the card to match the Figma style */
+/* Decorative rectangular plate under the card */
 .purpose-card::after {
   content: "";
   position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: -18px;
-  height: 74px;
-  background: rgba(255,255,255,0.95);
-  transform: skewX(-18deg);
-  border-radius: 12px;
-  box-shadow: 0 18px 32px rgba(10,10,10,0.12);
+  left: 0;
+  right: 0;
+  bottom: -12px;
+  height: 72px;
+  background: rgba(255,255,255,0.98);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
   z-index: 0;
 }
 
